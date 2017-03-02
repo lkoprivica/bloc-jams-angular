@@ -14,7 +14,13 @@
          .state('album', {
              url: '/album',
              templateUrl: '/templates/album.html'
-         });
+         })
+         //assignment checkpoint 3
+        .state('collection', {
+             url:'/collection',
+             templateUrl: '/templates/collection.html'
+          })
+      });
      }
  
      angular
