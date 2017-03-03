@@ -36,6 +36,11 @@
      Fixtures.getAlbum = function() {
          return albumPicasso;
      };
+       
+     //assignment checkpoint 6
+     Fixtures.getCollection = function(numberOfAlbums){
+         return numberOfAlbums.push(albumPicasso);
+     }
          return Fixtures;
      }
  

@@ -1,9 +1,7 @@
 (function() {
      function CollectionCtrl() {
-        this.albums = [];
-     for (var i=0; i < 12; i++) {
-         this.albums.push(angular.copy(albumPicasso));
-     }
+       //update to use the Fixtures services getCollection Method assignment checkpoint 6
+       this.albums = Fixtures.getCollection(12);
   }
  
      angular
