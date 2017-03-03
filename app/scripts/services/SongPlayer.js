@@ -99,6 +99,27 @@
               playSong(song);
      }
  };
+       
+         /** assignment checkpoint 8 
+         * @function SongPlayer.next
+         * @desc Method that allows user to move to the next song in the array of songs
+         * @param {object} song
+         */
+         SongPlayer.next - function(){
+           var currentSongIndex = getSongIndex(songPlayer.currentSong);
+           currentSongIndex++;
+         }
+         
+         /** assignment checkpoint 8 
+         * @function StopSong
+         * @ desc stops the currently playing song and resets it to zero
+         * @param {object} song
+         */
+         stopSong = function(){
+           currentBuzzObject.stop();
+           song.playing - null;
+           
+         }
             var currentBuzzObject = new buzz.sound(song.audioUrl, {
                 formats: ['mp3'],
                 preload: true
