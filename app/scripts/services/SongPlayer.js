@@ -37,49 +37,47 @@
            if (currentBuzzObject) {
                currentBuzzObject.stop();
                SongPlayer.currentSong.playing = null;
-    }
+            }
           
-      /**assignment checkpoint 7
-      * @function playSong
-      * @desc plays the current song
-      * @param {Object} song
-      */
-      var playSong = function(song){
-         currentBuzzObject.play()
-         song.playing = true;
+            /**assignment checkpoint 7
+            * @function playSong
+            * @desc plays the current song
+            * @param {Object} song
+            */
+            var playSong = function(song){
+                currentBuzzObject.play()
+                song.playing = true;
        
-     }
+            }
  
-        currentBuzzObject = new buzz.sound(song.audioUrl, {
-            formats: ['mp3'],
-            preload: true
-    });
+            currentBuzzObject = new buzz.sound(song.audioUrl, {
+                 formats: ['mp3'],
+                 preload: true
+            });
  
-    SongPlayer.currentSong = song;
- };
+            SongPlayer.currentSong = song;
+        };
        
         SongPlayer.play = function(song) {
-          song = song || SongPlayer.currentSong;
-          if (SongPlayer.currentSong !== song) {
-            
-              setSong(song);
-              currentBuzzObject.play(); 
-              song.playing = true;
+            song = song || SongPlayer.currentSong;
+            if (SongPlayer.currentSong !== song) {
+                setSong(song);
+                currentBuzzObject.play(); 
+                song.playing = true;
           
-             
-          } else if (SongPlayer.currentSong === song) {
-              if (currentBuzzObject.isPaused()) {
-                 currentBuzzObject.play();
-         }
-     }    
+             } else if (SongPlayer.currentSong === song) {
+                 if (currentBuzzObject.isPaused()) {
+                     currentBuzzObject.play();
+                 }
+               }    
           
-  };
+         };
           
          SongPlayer.pause = function(song) {
-           song = song || SongPlayer.currentSong;
-           currentBuzzObject.pause();
-           song.playing = false;
- };
+             song = song || SongPlayer.currentSong;
+             currentBuzzObject.pause();
+             song.playing = false;
+        };
          /**
          * @function SongPlayer.previous
          * @desc Method that gives teh ability to get a song's index
@@ -103,13 +101,10 @@
                 formats: ['mp3'],
                 preload: true
          });
-            
-         
-       }
-     };
+                   
+       };
 
           return SongPlayer;
-     }
  
      angular
          .module('blocJams')
