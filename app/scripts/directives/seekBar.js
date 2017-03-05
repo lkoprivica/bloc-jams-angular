@@ -25,7 +25,10 @@
                   var percent = value / max * 100;
                   return percent + "%";
              };
- 
+             //assignment checkpoint 9
+			 scope.thumbStyle = function(){
+				 return scope.value = percent *scope.max;
+			 }
              scope.fillStyle = function() {
                  return {width: percentString()};
              };
