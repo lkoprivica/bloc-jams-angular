@@ -39,7 +39,11 @@
        
          //assignment checkpoint 6
          Fixtures.getCollection = function(numberOfAlbums){
-             return numberOfAlbums.push(albumPicasso);
+			 var collections = [];
+			 for(var i = 0; i < numberOfAlbums; i++){
+				 collections.push(albumPicasso);
+			 }
+             return collections;
          }
              return Fixtures;
      }
