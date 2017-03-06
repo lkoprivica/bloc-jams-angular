@@ -35,8 +35,7 @@
          */
          var setSong = function(song) {
            if (currentBuzzObject) {
-               currentBuzzObject.stop();
-               SongPlayer.currentSong.playing = null;
+               stopSong();
     }
           
       /**assignment checkpoint 7
@@ -105,7 +104,7 @@
          * @desc Method that allows user to move to the next song in the array of songs
          * @param {object} song
          */
-         SongPlayer.next - function(){
+         SongPlayer.next = function(){
            var currentSongIndex = getSongIndex(songPlayer.currentSong);
            currentSongIndex++;
          }
@@ -116,8 +115,7 @@
          * @param {object} song
          */
          stopSong = function(){
-           currentBuzzObject.stop();
-           song.playing - null;
+           stopSong();
            
          }
             var currentBuzzObject = new buzz.sound(song.audioUrl, {
