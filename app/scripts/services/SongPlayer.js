@@ -34,19 +34,18 @@
          * @desc Stops currently playing song and loads new audio file as currentBuzzObject
          * @param {Object} song
          */
-        var setSong = function(song) {
-            if (currentBuzzObject) {
-                currentBuzzObject.stop();
-                SongPlayer.currentSong.playing = null;
-            }
+         var setSong = function(song) {
+             if (currentBuzzObject) {
+               stopSong();
+             }
 
-            /**assignment checkpoint 7
+             /**assignment checkpoint 7
              * @function playSong
              * @desc plays the current song
              * @param {Object} song
              */
-            var playSong = function(song) {
-                playSong();
+          var playSong = function(song) {
+              playSong();
 
             }
 
@@ -57,7 +56,7 @@
 
             SongPlayer.currentSong = song;
         };
-
+       
         SongPlayer.play = function(song) {
             song = song || SongPlayer.currentSong;
             if (SongPlayer.currentSong !== song) {
@@ -71,8 +70,7 @@
             }
 
             if (currentSong !== song) {
-
-                setSong(song);
+				setSong(song);
                 playSong();
 
 
@@ -109,21 +107,17 @@
             }
         };
 
-        /** assignment checkpoint 8 
-         * @function SongPlayer.next
-         * @desc Method that allows user to move to the next song in the array of songs
-         * @param {object} song
-         */
         SongPlayer.next = function() {
             var currentSongIndex = getSongIndex(songPlayer.currentSong);
             currentSongIndex++;
         };
-
-        /** assignment checkpoint 8 
+         
+         /** assignment checkpoint 8 
          * @function StopSong
          * @ desc stops the currently playing song and resets it to zero
          * @param {object} song
          */
+
         SongPlayer.stopSong = function() {
             currentBuzzObject.stop();
             song.playing - null;
@@ -142,3 +136,24 @@
         .module('blocJams')
         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
+
+         stopSong = function(){
+           stopSong();
+           
+         }
+            var currentBuzzObject = new buzz.sound(song.audioUrl, {
+                formats: ['mp3'],
+                preload: true
+         });
+            
+         
+       }
+     };
+
+          return SongPlayer;
+     }
+ 
+     angular
+         .module('blocJams')
+         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
+ })();
