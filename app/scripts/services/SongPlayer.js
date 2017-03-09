@@ -39,24 +39,32 @@
                stopSong();
              }
 
-             /**assignment checkpoint 7
-             * @function playSong
-             * @desc plays the current song
-             * @param {Object} song
-             */
+          /**assignment checkpoint 7
+          * @function playSong
+          * @desc plays the current song
+          * @param {Object} song
+		  */
           var playSong = function(song) {
               playSong();
 
-            }
-
-            currentBuzzObject = new buzz.sound(song.audioUrl, {
-                formats: ['mp3'],
-                preload: true
+           }
+           /** 
+		   * @desc Sets the currentBuzz objec to play current song
+		   * @ param {object} song
+		   */
+           currentBuzzObject = new buzz.sound(song.audioUrl, {
+               formats: ['mp3'],
+               preload: true
             });
 
             SongPlayer.currentSong = song;
         };
        
+		/** 
+		* @function SongPlayer.play
+		* @desc If the currently playing song is not the same as the song the user clicks on, then: Stop * * the currently playing song, if there is one, Set a new Buzz sound object, Set the newly chosen ** * song object as the currentSong,Play the new Buzz sound object.
+		* @param {object} song
+		*/
         SongPlayer.play = function(song) {
             song = song || SongPlayer.currentSong;
             if (SongPlayer.currentSong !== song) {
@@ -81,7 +89,11 @@
             }
 
         };
-
+        /** 
+		* @function SongPLayer.pause
+		* @desc If song is already playing and user clicks it, then pause the song.
+		* @param {object} song
+		*/
         SongPlayer.pause = function(song) {
             song = song || SongPlayer.currentSong;
             currentBuzzObject.pause();
@@ -106,7 +118,11 @@
                 playSong(song);
             }
         };
-
+        /**
+		* @fucntion Songplayer.next
+		* @desc stops currently playing song and switches to next song. 
+		* @param {object} song
+		*/
         SongPlayer.next = function() {
             var currentSongIndex = getSongIndex(songPlayer.currentSong);
             currentSongIndex++;
@@ -119,8 +135,7 @@
          */
 
         SongPlayer.stopSong = function() {
-            currentBuzzObject.stop();
-            song.playing - null;
+            stopSong();
         };
 
         var currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -137,23 +152,7 @@
         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
 })();
 
-         stopSong = function(){
-           stopSong();
-           
-         }
-            var currentBuzzObject = new buzz.sound(song.audioUrl, {
-                formats: ['mp3'],
-                preload: true
-         });
+        
             
-         
-       }
-     };
-
-          return SongPlayer;
-     }
- 
-     angular
-         .module('blocJams')
-         .factory('SongPlayer', ['$rootScope', 'Fixtures', SongPlayer]);
- })();
+       
+     
