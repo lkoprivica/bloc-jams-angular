@@ -14,18 +14,19 @@
          })
          .state('album', {
              url: '/album',
+		     controller: 'AlbumCtrl as album',
              templateUrl: '/templates/album.html'
          })
          //assignment checkpoint 3
-        .state('collection', {
+         .state('collection', {
              url:'/collection',
              controller: 'CollectionCtrl as collection',
              templateUrl: '/templates/collection.html'
           })
-       .state('*', {
-         url: '/',
-         controller: 'CollectionCtrl as collection', 
-         templateUrl: '/templates/collection.html'
+          .state('*', {
+          url: '/',
+          controller: 'CollectionCtrl as collection', 
+          templateUrl: '/templates/collection.html'
        });
       };
  

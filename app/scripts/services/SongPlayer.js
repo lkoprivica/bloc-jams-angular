@@ -4,9 +4,10 @@
      * @desc gets the index of a song object in order to move between songs
      * @type {object} song
      */
-    function SongPlayer(Fixtures) {
+    function SongPlayer($scope, Fixtures) {
         var SongPlayer = {};
 
+		
         var currentAlbum = Fixtures.getAlbum();
 
         /**
@@ -15,6 +16,7 @@
          * @type {object} song
          */
         var getSongIndex = function(song) {
+			if(!song) return 0;
             return currentAlbum.songs.indexOf(song);
         };
 
@@ -22,7 +24,7 @@
          * @desc Active song object from list of songs
          * @type {Object}
          */
-        SongPlayer.SongPlayer.currentSong = null;
+        SongPlayer.currentSong = null;
         /**
          * @desc Buzz object audio file
          * @type {Object}
@@ -36,7 +38,7 @@
          */
          var setSong = function(song) {
              if (currentBuzzObject) {
-               stopSong();
+               SongPlayer.stopSong();
              }
 
           /**assignment checkpoint 7
@@ -45,7 +47,9 @@
           * @param {Object} song
 		  */
           var playSong = function(song) {
-              playSong();
+            song = song || SongPlayer.currentSong;
+            currentBuzzObject.play();
+            song.playing = true;
 
            }
            /** 
@@ -127,6 +131,8 @@
             var currentSongIndex = getSongIndex(songPlayer.currentSong);
             currentSongIndex++;
         };
+		
+		
          
          /** assignment checkpoint 8 
          * @function StopSong
@@ -135,17 +141,21 @@
          */
 
         SongPlayer.stopSong = function() {
-            stopSong();
+            song = song || SongPlayer.currentSong;
+            currentBuzzObject.stop();
+            song.playing = false;
         };
-
+		var song = currentAlbum.songs[getSongIndex(SongPlayer.currentSong)];
+		console.log(song);
         var currentBuzzObject = new buzz.sound(song.audioUrl, {
             formats: ['mp3'],
             preload: true
         });
+		
+		return SongPlayer;
 
     };
 
-    return SongPlayer;
 
     angular
         .module('blocJams')
