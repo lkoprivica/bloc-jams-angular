@@ -30,6 +30,18 @@
          * @type {Object}
          */
         var currentBuzzObject = null;
+		
+		  /**assignment checkpoint 7
+          * @function playSong
+          * @desc plays the current song
+          * @param {Object} song
+		  */
+        var playSong = function(song) {
+            song = song || SongPlayer.currentSong;
+            currentBuzzObject.play();
+            song.playing = true;
+
+        }
 
         /**
          * @function setSong
@@ -40,18 +52,6 @@
              if (currentBuzzObject) {
                SongPlayer.stopSong();
              }
-
-          /**assignment checkpoint 7
-          * @function playSong
-          * @desc plays the current song
-          * @param {Object} song
-		  */
-          var playSong = function() {
-            song = song || SongPlayer.currentSong;
-            currentBuzzObject.play();
-            song.playing = true;
-
-           }
            /** 
 		   * @desc Sets the currentBuzz objec to play current song
 		   * @ param {object} song
@@ -138,7 +138,6 @@
             song.playing = false;
         };
 		var song = currentAlbum.songs[getSongIndex(SongPlayer.currentSong)];
-		console.log(song);
         var currentBuzzObject = new buzz.sound(song.audioUrl, {
             formats: ['mp3'],
             preload: true
