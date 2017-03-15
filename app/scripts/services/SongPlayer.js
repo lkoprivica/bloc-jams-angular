@@ -4,9 +4,8 @@
      * @desc gets the index of a song object in order to move between songs
      * @type {object} song
      */
-    function SongPlayer($scope, Fixtures) {
-        var SongPlayer = {};
-
+    function SongPlayer($rootScope, Fixtures) {
+		var SongPlayer = {};
 		
         var currentAlbum = Fixtures.getAlbum();
 
@@ -25,6 +24,13 @@
          * @type {Object}
          */
         SongPlayer.currentSong = null;
+		
+		/**
+		 * @desc Current playback time (in seconds) of currently playing song.
+		 * @type {number}
+		 */
+		
+		SongPlayer.currentTime = null;
         /**
          * @desc Buzz object audio file
          * @type {Object}
@@ -60,6 +66,13 @@
                formats: ['mp3'],
                preload: true
             });
+			 
+			currentBuzzObject.bind('timeupdate', function() {
+                $rootScope.$apply(function() {
+                    SongPlayer.currentTime = currentBuzzObject.getTime();
+                });
+            });
+			 
 
             SongPlayer.currentSong = song;
         };
@@ -124,8 +137,17 @@
             currentSongIndex++;
         };
 		
+		/**
+		* @function setCurrentTime
+		* @desc Set current time (in seconds) of currently playing song
+		* @param {Number} time
+		*/
+		SongPlayer.setCurrentTime = function(time) {
+     		if (currentBuzzObject) {
+         		currentBuzzObject.setTime(time);
+     		}
+ 		};
 		
-         
          /** assignment checkpoint 8 
          * @function StopSong
          * @ desc stops the currently playing song and resets it to zero
@@ -142,6 +164,7 @@
             formats: ['mp3'],
             preload: true
         });
+		
 		
 		return SongPlayer;
 
