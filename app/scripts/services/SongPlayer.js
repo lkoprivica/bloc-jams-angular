@@ -33,6 +33,14 @@
 		SongPlayer.currentTime = null;
 		
 		SongPlayer.totalTime = "-:--";
+		
+		SongPlayer.volume = 0;
+		
+		SongPlayer.setVolume = function(vol){
+			
+			currentBuzzObject.setVolume(vol);
+			
+		}
         /**
          * @desc Buzz object audio file
          * @type {Object}
@@ -71,6 +79,16 @@
 			currentBuzzObject.bind('timeupdate', function() {
                 $rootScope.$apply(function() {
                     SongPlayer.currentTime = currentBuzzObject.getTime();
+					var minutes = parseInt(SongPlayer.currentTime / 60),
+				        seconds = parseInt(SongPlayer.currentTime % 60);
+			
+					if(seconds <= 9){
+						seconds = "0" + seconds;
+			        }
+			
+			     SongPlayer.currentTime = minutes + ":" + seconds;
+
+			
                 });
             });
 		
