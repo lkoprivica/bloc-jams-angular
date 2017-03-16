@@ -2,9 +2,14 @@
      function PlayerBarCtrl(Fixtures, SongPlayer) {
          this.albumData = Fixtures.getAlbum();
          this.songPlayer = SongPlayer;
+		
 		 
-		 console.log('playerbar')
-     }
+		 console.log(this.songPlayer);
+		 
+		 this.songName = this.songPlayer.currentSong;
+		 
+	 };
+		 
  
      angular
          .module('blocJams')

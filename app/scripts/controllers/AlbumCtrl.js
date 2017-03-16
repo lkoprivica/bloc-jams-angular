@@ -2,7 +2,7 @@
       function AlbumCtrl(Fixtures, SongPlayer) {
 		  
 	     this.albumData = Fixtures.getAlbum();
-          this.songPlayer = SongPlayer;
+         this.songPlayer = SongPlayer;
 		  
 		  
 		for (var songIndex in this.albumData.songs){

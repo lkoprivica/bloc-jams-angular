@@ -31,6 +31,8 @@
 		 */
 		
 		SongPlayer.currentTime = null;
+		
+		SongPlayer.totalTime = "-:--";
         /**
          * @desc Buzz object audio file
          * @type {Object}
@@ -42,11 +44,10 @@
           * @desc plays the current song
           * @param {Object} song
 		  */
-        var playSong = function(song) {
+         var playSong = function(song) {
             song = song || SongPlayer.currentSong;
             currentBuzzObject.play();
             song.playing = true;
-
         }
 
         /**
@@ -72,9 +73,10 @@
                     SongPlayer.currentTime = currentBuzzObject.getTime();
                 });
             });
-			 
-
+		
             SongPlayer.currentSong = song;
+			 SongPlayer.totalTime = SongPlayer.currentSong.duration;
+			 console.log(SongPlayer)
         };
        
 		/** 
@@ -83,7 +85,7 @@
 		* @param {object} song
 		*/
         SongPlayer.play = function(song) {
-			song = song || SongPlayer.currentSong;
+			song = song || SongPlayer.currentSong || currentAlbum.songs[0];
 			if (SongPlayer.currentSong !== song) {
 				 setSong(song);
                  playSong(song);
