@@ -3,30 +3,42 @@
 		 var calculatePercent = function(seekBar, event) {
              var offsetX = event.pageX - seekBar.offset().left;
              var seekBarWidth = seekBar.width();
-             var offsetXPercent = offsetX / seekBarWidth;
+             var offsetXPercent = (offsetX / seekBarWidth); 
              offsetXPercent = Math.max(0, offsetXPercent);
-             offsetXPercent = Math.min(1, offsetXPercent);
+             offsetXPercent = Math.min(100, offsetXPercent);
              return offsetXPercent;
          };
 	  	 return {
-         templateUrl: '/templates/directives/seek_bar.html',
-         replace: true,
-         restrict: 'E',
-         scope: {
-         onChange: '&'
-         },
-         link: function(scope, element, attributes) {
+			 templateUrl: '/templates/directives/seek_bar.html',
+			 replace: true,
+			 restrict: 'E',
+			 scope: {
+			 	onChange: '&'
+         	},
+         	link: function(scope, element, attributes) {
               scope.value = 0;
               scope.max = 100;
+			  scope.tracker_width = 0;
 			  
 	          var seekBar = $(element);
 			 
 			  attributes.$observe('value', function(newValue) {
+				  var time = newValue.split(":");
+				  newValue = parseInt(time[0]) * 60 + parseInt(time[1]);
 				  scope.value = newValue;
+				  scope.tracker_width = (newValue / scope.max) * 100;
  			  });
  
  		      attributes.$observe('max', function(newValue) {
-     			  scope.max = newValue;
+				  if(newValue.indexOf(":") > -1){
+					  var time = newValue.split(":");
+					  newValue = parseInt(time[0]) * 60 + parseInt(time[1]);
+					  scope.max = newValue;
+					  scope.tracker_width = (newValue / scope.max) * 100;
+				  }else{
+					  scope.max = newValue;
+					  scope.tracker_width = (newValue / scope.max) * 100;
+				  }
  			  });
  
               var percentString = function () {
@@ -53,12 +65,13 @@
 				  notifyOnChange(scope.value);
              };
 			  
-			 scope.trackThumb = function() {
-				 console.log('tracking thumb')
+			 scope.trackThumb = function(event) {
+				 
      		      $document.bind('mousemove.thumb', function(event) {
                       var percent = calculatePercent(seekBar, event);
                       scope.$apply(function() {
                           scope.value = percent * scope.max;
+						  var thumb = event.target.querySelector('.thumb');
 						  notifyOnChange(scope.value);
                   });
              });

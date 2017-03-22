@@ -163,6 +163,7 @@
 		* @param {Number} time
 		*/
 		SongPlayer.setCurrentTime = function(time) {
+			time = Number(time);
      		if (currentBuzzObject) {
          		currentBuzzObject.setTime(time);
      		}
