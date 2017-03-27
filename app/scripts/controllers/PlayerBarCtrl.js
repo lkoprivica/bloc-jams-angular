@@ -8,6 +8,8 @@
 		 
 		 this.songName = this.songPlayer.currentSong;
 		 
+		 this.artistname = "";
+		 
 	 };
 		 
  

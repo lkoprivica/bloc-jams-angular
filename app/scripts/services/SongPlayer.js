@@ -54,6 +54,7 @@
 		  */
          var playSong = function(song) {
             song = song || SongPlayer.currentSong;
+			for(var songIndex in currentAlbum.songs) { currentAlbum.songs[songIndex].playing = false; }
             currentBuzzObject.play();
             song.playing = true;
         }
@@ -113,11 +114,7 @@
                   }
 			 }     
         };
-		
-        SongPlayer.pause = function(song) {
-            currentBuzzObject.pause();
-            song.playing = false;
-        };
+
         /** 
 		* @function SongPLayer.pause
 		* @desc If song is already playing and user clicks it, then pause the song.
@@ -153,8 +150,17 @@
 		* @param {object} song
 		*/
         SongPlayer.next = function() {
-            var currentSongIndex = getSongIndex(songPlayer.currentSong);
+            var currentSongIndex = getSongIndex(SongPlayer.currentSong);
             currentSongIndex++;
+			
+			if(currentSongIndex >= currentAlbum.songs.length){
+				currentSongIndex = 0;	
+			}
+			var song = currentAlbum.songs[currentSongIndex];
+			setSong(song);
+			playSong(song);
+			
+			
         };
 		
 		/**

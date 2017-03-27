@@ -57,11 +57,13 @@
 			 var notifyOnChange = function(newValue) {
      		 	 if (typeof scope.onChange === 'function') {
                  	 scope.onChange({value: newValue});
+					 scope.tracker_width = scope.value;
                  }
              };
 			 scope.onClickSeekBar = function(event) {
               	  var percent = calculatePercent(seekBar, event);
              	  scope.value = percent * scope.max;
+				  
 				  notifyOnChange(scope.value);
              };
 			  
